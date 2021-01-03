@@ -6,15 +6,6 @@ from time import sleep
 from apiclient.discovery import build
 
 
-# # APIキー 動画検索とリスト取得
-with open('setting/setting.json', "r") as f:
-    settings = json.load(f)
-
-YOUTUBE_API_KEY = settings['YOUTUBE_API_KEY']
-
-youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
-
-
 def get_game_video_api(youtube, serch_word, publishedAfter, publishedBefore, pageToken=None):
     """対象期間中に公開されたゲームカテゴリの動画を取得
 
@@ -175,3 +166,14 @@ def get_game_video_summary_list(youtube, video_id_list):
         video_summary_list += res_dict['items']
 
     return video_summary_list
+
+
+if __name__ == "__main__":
+
+    # # APIキー 動画検索とリスト取得
+    with open('setting/setting.json', "r") as f:
+        settings = json.load(f)
+
+    YOUTUBE_API_KEY = settings['YOUTUBE_API_KEY']
+
+    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
