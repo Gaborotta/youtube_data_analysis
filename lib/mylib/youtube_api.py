@@ -91,12 +91,12 @@ def get_game_title_youtube(video_id):
     finder = re.findall(
         r',"title":{"simpleText":".*"},"subtitle"', res.text
     )
-    print(finder)
+    # print(finder)
     if len(finder) != 0:
         game_title = finder[0].split('"')[5]
     else:
         game_title = None
-    print(game_title)
+    # print(game_title)
     return game_title
 
 
@@ -168,8 +168,12 @@ def get_game_video_summary_list(youtube, video_id_list):
     return video_summary_list
 
 
-if __name__ == "__main__":
+def set_youtube_api():
+    """youtube apiの初期化
 
+    Returns:
+        obj: youtube apiを返す
+    """
     # # APIキー 動画検索とリスト取得
     with open('setting/setting.json', "r") as f:
         settings = json.load(f)
@@ -177,3 +181,8 @@ if __name__ == "__main__":
     YOUTUBE_API_KEY = settings['YOUTUBE_API_KEY']
 
     youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+    return youtube
+
+
+if __name__ == "__main__":
+    pass
